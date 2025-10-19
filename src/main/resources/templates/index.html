@@ -13,7 +13,7 @@
                         <span th:if="${!req.handled}" class="text-danger">*(Новая)*</span>
                         Заявка от <span th:text="${req.userName}"></span>
                     </h5>
-                    <p class="card-text"><b>Курс:</b> <span th:text="${req.courseName}"></span></p>
+                    <p class="card-text"><b>Курс:</b> <span th:text="${req.course.name}"></span></p>
                     <p class="card-text" th:text="${req.commentary}"></p>
                     <p class="card-text"><b>Тел:</b> <span th:text="${req.phone}"></span></p>
                     <a th:href="@{'/details/' + ${req.id}}" class="card-link">Подробнее</a>
