@@ -1,7 +1,7 @@
 package com.example.crmsystempro.services;
 
-import com.example.crmsystem.entities.ApplicationRequest;
-import com.example.crmsystem.repository.ApplicationRequestRepository;
+import com.example.crmsystempro.entities.ApplicationRequest;
+import com.example.crmsystempro.repository.ApplicationRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

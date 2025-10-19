@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "requests")
 @Data
@@ -31,4 +33,10 @@ public class ApplicationRequest {
 
     @Column(name = "handled")
     private boolean handled;
+
+    @ManyToOne
+    private Course courses;
+
+    @ManyToMany
+    private List<Operators> operators;
 }
