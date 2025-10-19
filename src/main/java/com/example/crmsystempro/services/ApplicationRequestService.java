@@ -73,7 +73,7 @@ public class ApplicationRequestService {
             existingRequest.setUserName(request.getUserName());
             existingRequest.setCommentary(request.getCommentary());
             existingRequest.setPhone(request.getPhone());
-            existingRequest.setCourses(request.getCourses());
+            existingRequest.setCourse(request.getCourse());
             requestRepository.save(existingRequest);
         }
     }

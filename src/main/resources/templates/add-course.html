@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+    <title>Добавить курс</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <h3 class="mb-3">Новый курс</h3>
+            <form th:action="@{/add-course}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Название курса:</label>
+                    <input type="text" class="form-control" name="name" placeholder="Введите название" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Описание:</label>
+                    <textarea class="form-control" name="description" rows="4" placeholder="Введите описание"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Цена (USD):</label>
+                    <input type="number" class="form-control" name="price" placeholder="Введите цену" required min="0">
+                </div>
+                <button type="submit" class="btn btn-success">Добавить</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

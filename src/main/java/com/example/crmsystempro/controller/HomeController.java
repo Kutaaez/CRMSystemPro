@@ -1,6 +1,8 @@
 package com.example.crmsystempro.controller;
 
 import com.example.crmsystempro.entities.ApplicationRequest;
+import com.example.crmsystempro.entities.Course;
+import com.example.crmsystempro.entities.Operators;
 import com.example.crmsystempro.services.ApplicationRequestService;
 import com.example.crmsystempro.services.CourseService;
 import com.example.crmsystempro.services.OperatorService;
@@ -61,6 +63,30 @@ public class HomeController {
         model.addAttribute("request", requestService.getRequestById(id));
         model.addAttribute("operators", operatorService.getAllOperators());
         return "details";
+    }
+
+    @GetMapping("/add-course")
+    public String addCoursePage() {
+        return "add-course"; // Возвращает имя HTML файла
+    }
+
+
+    @PostMapping("/add-course")
+    public String addCourse(Course course) {
+        coursesService.addCourse(course);
+        return "redirect:/add-request"; // Перенаправляем на страницу добавления заявки
+    }
+
+
+    @GetMapping("/add-operator")
+    public String addOperatorPage() {
+        return "add-operator"; // Возвращает имя HTML файла
+    }
+
+    @PostMapping("/add-operator")
+    public String addOperator(Operators operator) {
+        operatorService.addOperator(operator);
+        return "redirect:/"; // Перенаправляем на главную страницу
     }
 
 

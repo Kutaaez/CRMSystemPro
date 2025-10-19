@@ -15,4 +15,8 @@ public class OperatorService {
     public List<Operators> getAllOperators() {
         return operatorRepository.findAll();
     }
+    public void addOperator(Operators operator) {
+        operatorRepository.save(operator);
+
+    }
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Добавить оператора</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <h3 class="mb-3">Новый оператор</h3>
+            <form th:action="@{/add-operator}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Имя:</label>
+                    <input type="text" class="form-control" name="name" placeholder="Введите имя" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Фамилия:</label>
+                    <input type="text" class="form-control" name="surname" placeholder="Введите фамилию" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Департамент:</label>
+                    <select class="form-select" name="department" required>
+                        <option>IT</option>
+                        <option>Продажа</option>
+                        <option>Маркетинг</option>
+                        <option>Рекрутинг</option>
+                        <option>Администрация</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Добавить</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
