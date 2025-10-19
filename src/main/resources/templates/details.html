@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Детали заявки</title>
+</head>
+<body>
+<div layout:fragment="content" th:if="${request != null}">
+    <div class="text-center" th:if="${!request.handled}">
+        <h3 class="text-danger">*** Новая необработанная заявка ***</h3>
+    </div>
+    <div class="text-center" th:if="${request.handled}">
+        <h3 class="text-success">Обработанная заявка</h3>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">ФИО :</label>
+        <input type="text" class="form-control" th:value="${request.userName}" readonly>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Курс :</label>
+        <input type="text" class="form-control" th:value="${request.courseName}" readonly>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Телефон :</label>
+        <input type="text" class="form-control" th:value="${request.phone}" readonly>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Комментарии :</label>
+        <textarea class="form-control" rows="5" readonly th:text="${request.commentary}"></textarea>
+    </div>
+
+    <div class="d-flex">
+        <form th:action="@{'/process-request/' + ${request.id}}" method="post" class="me-2" th:if="${!request.handled}">
+            <button class="btn btn-success">Обработать заявку</button>
+        </form>
+        <form th:action="@{'/delete-request/' + ${request.id}}" method="post">
+            <button class="btn btn-danger">Удалить заявку</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
