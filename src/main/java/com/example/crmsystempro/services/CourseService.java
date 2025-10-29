@@ -12,10 +12,10 @@ public interface CourseService {
     Course getCourseById(Long id);
 
     // эпэдейдә
-    Course updateCourse(Course course);
+    Course updateCourse(Long id, Course course);
 
     // деледе
-    void deleteCourse(Long id);
+    boolean deleteCourse(Long id);
 
     //іба чотко
 }
