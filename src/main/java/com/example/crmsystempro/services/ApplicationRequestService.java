@@ -1,80 +1,29 @@
 package com.example.crmsystempro.services;
 
 import com.example.crmsystempro.entities.ApplicationRequest;
-import com.example.crmsystempro.entities.Operators;
-import com.example.crmsystempro.repository.ApplicationRequestRepository;
-import com.example.crmsystempro.repository.OperatorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class ApplicationRequestService {
+public interface ApplicationRequestService {
 
-    @Autowired
-    private ApplicationRequestRepository requestRepository;
+    List<ApplicationRequest> getAllRequests();
 
-    @Autowired
-    private OperatorRepository operatorRepository;
+    List<ApplicationRequest> getNewRequests();
 
-    public List<ApplicationRequest> getAllRequests() {
-        return requestRepository.findAll();
-    }
+    List<ApplicationRequest> getProcessedRequests();
 
-    public List<ApplicationRequest> getNewRequests() {
-        return requestRepository.findAllByHandledIsFalse();
-    }
+    ApplicationRequest getRequestById(Long id);
 
-    public List<ApplicationRequest> getProcessedRequests() {
-        return requestRepository.findAllByHandledIsTrue();
-    }
+    ApplicationRequest addRequest(ApplicationRequest request);
 
-    public ApplicationRequest getRequestById(Long id) {
-        return requestRepository.findById(id).orElse(null);
-    }
+    void processRequest(Long id);
 
-    public void addRequest(ApplicationRequest request) {
-        request.setHandled(false);
-        requestRepository.save(request);
-    }
+    boolean deleteRequest(Long id);
 
-    public void processRequest(Long id) {
-        ApplicationRequest request = getRequestById(id);
-        if (request != null) {
-            request.setHandled(true);
-            requestRepository.save(request);
-        }
-    }
+    void assignOperators(Long requestId, List<Long> operatorIds);
 
-    public void deleteRequest(Long id) {
-        requestRepository.deleteById(id);
-    }
-    public void assignOperators(Long requestId, List<Long> operatorIds) {
-        ApplicationRequest request = getRequestById(requestId);
-        if (request != null) {
-            List<Operators> operators = operatorRepository.findAllById(operatorIds);
-            request.setOperators(operators);
-            request.setHandled(true);
-            requestRepository.save(request);
-        }
-    }
+    void removeOperatorFromRequest(Long requestId, Long operatorId);
 
-    public void removeOperatorFromRequest(Long requestId, Long operatorId) {
-        ApplicationRequest request = getRequestById(requestId);
-        if (request != null) {
-            request.getOperators().removeIf(op -> op.getId().equals(operatorId));
-            requestRepository.save(request);
-        }
-    }
-    public void updateRequest(ApplicationRequest request) {
-        ApplicationRequest existingRequest = getRequestById(request.getId());
-        if (existingRequest != null) {
-            existingRequest.setUserName(request.getUserName());
-            existingRequest.setCommentary(request.getCommentary());
-            existingRequest.setPhone(request.getPhone());
-            existingRequest.setCourse(request.getCourse());
-            requestRepository.save(existingRequest);
-        }
-    }
+
+    ApplicationRequest updateRequest(Long id, ApplicationRequest requestData);
 }

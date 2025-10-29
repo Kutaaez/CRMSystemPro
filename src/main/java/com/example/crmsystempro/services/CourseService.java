@@ -1,21 +1,21 @@
 package com.example.crmsystempro.services;
 
 import com.example.crmsystempro.entities.Course;
-import com.example.crmsystempro.repository.CourseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
-public class CourseService {
-    @Autowired
-    private CourseRepository coursesRepository;
+public interface CourseService {
+    // крит
+    Course addCourse(Course course);
 
-    public List<Course> getAllCourses() {
-        return coursesRepository.findAll();
-    }
-    public void addCourse(Course course) {
-        coursesRepository.save(course);
-    }
+    // рид
+    List<Course> getAllCourses();
+    Course getCourseById(Long id);
+
+    // эпэдейдә
+    Course updateCourse(Course course);
+
+    // деледе
+    void deleteCourse(Long id);
+
+    //іба чотко
 }

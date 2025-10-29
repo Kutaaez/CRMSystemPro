@@ -62,31 +62,31 @@ public class HomeController {
     public String details(@PathVariable(name = "id") Long id, Model model) {
         model.addAttribute("request", requestService.getRequestById(id));
         model.addAttribute("operators", operatorService.getAllOperators());
+        model.addAttribute("courses", coursesService.getAllCourses());
         return "details";
     }
-
     @GetMapping("/add-course")
     public String addCoursePage() {
-        return "add-course"; // Возвращает имя HTML файла
+        return "add-course";
     }
 
 
     @PostMapping("/add-course")
     public String addCourse(Course course) {
         coursesService.addCourse(course);
-        return "redirect:/add-request"; // Перенаправляем на страницу добавления заявки
+        return "redirect:/add-request";
     }
 
 
     @GetMapping("/add-operator")
     public String addOperatorPage() {
-        return "add-operator"; // Возвращает имя HTML файла
+        return "add-operator";
     }
 
     @PostMapping("/add-operator")
     public String addOperator(Operators operator) {
         operatorService.addOperator(operator);
-        return "redirect:/"; // Перенаправляем на главную страницу
+        return "redirect:/";
     }
 
 
@@ -116,6 +116,13 @@ public class HomeController {
     public String deleteRequest(@PathVariable(name = "id") Long id) {
         requestService.deleteRequest(id);
         return "redirect:/";
+    }
+
+
+    @PostMapping("/update-request")
+    public String updateRequest(ApplicationRequest request) {
+        requestService.updateRequest(request);
+        return "redirect:/details/" + request.getId();
     }
 
 }
