@@ -1,4 +1,4 @@
-package com.example.crmsystempro.controller;
+package com.example.crmsystempro.api;
 
 import com.example.crmsystempro.entities.ApplicationRequest;
 import com.example.crmsystempro.services.impl.ApplicationRequestServiceImpl;
@@ -16,16 +16,13 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/requests")
 public class ApplicationRequestController {
+    private final ApplicationRequestServiceImpl ars;
 
-
-    @Autowired
-    private ApplicationRequestServiceImpl ars;
-
-    @GetMapping("/requests")
+    @GetMapping
     public List<ApplicationRequest> getAllRequests() {
         return ars.getAllRequests();
     }
-    @GetMapping("/requests/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ApplicationRequest> getRequestById(@PathVariable Long id) {
         ApplicationRequest request = ars.getRequestById(id);
         if (request == null) {
@@ -33,12 +30,12 @@ public class ApplicationRequestController {
         }
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
-    @PostMapping("/requests")
+    @PostMapping
     public ResponseEntity<ApplicationRequest> addRequest(@RequestBody ApplicationRequest newRequest) {
         ApplicationRequest createdRequest = ars.addRequest(newRequest);
         return new ResponseEntity<>(createdRequest, HttpStatus.CREATED);
     }
-    @PutMapping("/requests/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ApplicationRequest> updateRequest(@PathVariable(value = "id") Long id, @RequestBody ApplicationRequest request) {
         ApplicationRequest updatedRequest = ars.updateRequest(id, request);
         if (Objects.isNull(updatedRequest)) {

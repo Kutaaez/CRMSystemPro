@@ -20,7 +20,7 @@ public interface ApplicationRequestService {
 
     boolean deleteRequest(Long id);
 
-    void assignOperators(Long requestId, List<Long> operatorIds);
+    ApplicationRequest assignOperators(Long requestId, Long operatorId);
 
     void removeOperatorFromRequest(Long requestId, Long operatorId);
 

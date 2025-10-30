@@ -64,14 +64,15 @@ public class ApplicationRequestServiceImpl implements ApplicationRequestService 
     }
 
     @Override
-    public void assignOperators(Long requestId, List<Long> operatorIds) {
-        ApplicationRequest request = getRequestById(requestId);
-        if (request != null) {
-            List<Operators> operators = operatorRepository.findAllById(operatorIds);
-            request.setOperators(operators);
+    public ApplicationRequest assignOperators(Long requestId, Long operatorId) {
+        ApplicationRequest request = requestRepository.findById(requestId).orElse(null);
+        Operators operator = operatorRepository.findById(operatorId).orElse(null);
+        if (request != null && operator != null) {
+            request.getOperators().add(operator);
             request.setHandled(true);
-            requestRepository.save(request);
+            return requestRepository.save(request);
         }
+        return null;
     }
 
     @Override

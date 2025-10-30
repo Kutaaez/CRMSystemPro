@@ -1,4 +1,4 @@
-package com.example.crmsystempro.controller;
+package com.example.crmsystempro.api;
 
 
 import com.example.crmsystempro.entities.Course;

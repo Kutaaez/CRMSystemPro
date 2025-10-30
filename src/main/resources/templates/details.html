@@ -44,7 +44,7 @@
     <hr>
 
     <h4 class="mt-4">Управление заявкой</h4>
-    <div class="d-flex mb-4">
+    <div class="d-flex align-items-center mb-4">
         <button th:if="${!request.handled}" type="button" class="btn btn-success me-2" data-bs-toggle="modal"
                 data-bs-target="#operatorsModal">
             Обработать заявку
@@ -74,7 +74,7 @@
                     <form th:action="@{/remove-operator}" method="post">
                         <input type="hidden" name="requestId" th:value="${request.id}">
                         <input type="hidden" name="operatorId" th:value="${op.id}">
-                        <button class="btn btn-danger btn-sm">Удалить</button>
+                        <button class="btn btn-sm btn-warning">Снять</button>
                     </form>
                 </td>
             </tr>
@@ -120,6 +120,5 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

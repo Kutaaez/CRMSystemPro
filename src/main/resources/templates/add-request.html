@@ -8,13 +8,12 @@
 <div layout:fragment="content">
     <div class="row">
         <div class="col-6 mx-auto">
+            <h3 class="mb-3">Новая заявка</h3>
             <form th:action="@{'/add-request'}" method="post">
-
                 <div class="mb-3">
                     <label class="form-label">ФИО:</label>
                     <input type="text" class="form-control" name="userName" placeholder="Введите ФИО" required>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label">Курс:</label>
                     <select class="form-select" name="course.id" required>
@@ -24,17 +23,14 @@
                         </option>
                     </select>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label">Телефон:</label>
                     <input type="tel" class="form-control" name="phone" placeholder="+7 777 777 7777" required>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label">Комментарии:</label>
                     <textarea class="form-control" name="commentary" rows="4" placeholder="Введите комментарий"></textarea>
                 </div>
-
                 <button type="submit" class="btn btn-success">Добавить заявку</button>
             </form>
         </div>
